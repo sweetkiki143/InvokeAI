@@ -1,0 +1,38 @@
+print("Good morning!")
+print("Please enter the items you wish to purchase.")
+print("Next enter the quantity you would like...")
+print("Finally, enter the price of the item:")
+class ItemToPurchase:
+    def __init__(self, item_name="none", item_price=0.0, item_quantity=0):
+        self.item_name = item_name
+        self.item_price = item_price
+        self.item_quantity = item_quantity
+
+    def print_item_cost(self):
+        total_cost = self.item_price * self.item_quantity
+        print(f'{self.item_name} {self.item_quantity} @ ${self.item_price:.2f} = ${total_cost:.2f}')
+        return total_cost
+
+def main():
+    items = []
+    total_cost = 0.0
+
+    while True:
+        item_name = input("Enter the item name (or type 'done' to finish): ")
+        if item_name.lower() == 'done':
+            break
+        item_quantity = int(input(f"Enter the quantity of {item_name}: "))
+        item_price = float(input(f"Enter the price of {item_name}: "))
+        
+        item = ItemToPurchase(item_name, item_price, item_quantity)
+        items.append(item)
+        total_cost += item.print_item_cost()
+
+    print("\nTotal cost of all items:")
+    for item in items:
+        item.print_item_cost()
+    
+    print(f"\nGrand total: ${total_cost:.2f}")
+
+if __name__ == "__main__":
+    main()
